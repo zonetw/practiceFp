@@ -1,2 +1,0 @@
-# practiceFp
-Created with CodeSandbox
