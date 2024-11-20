@@ -16,3 +16,21 @@ const nextCharForNumberString = (str) =>
     .fold(String.fromCharCode)
 
 console.log(nextCharForNumberString('  64  '))
+
+// example: nested box
+const percentToFloat = (percent) => parseFloat(percent.replace('%', '')) * 0.01
+
+const applyDiscount_ = (price, discount) => {
+  const cents = Number.parseFloat(price)
+  const savings = percentToFloat(discount)
+  return cents - cents * savings
+}
+
+const applyDiscount = (price, discount) =>
+  Box(Number.parseFloat(price)).fold((cents) =>
+    Box(discount)
+      .map(percentToFloat)
+      .fold((savings) => cents - cents * savings)
+  )
+
+console.log(applyDiscount('100', '10%'))
